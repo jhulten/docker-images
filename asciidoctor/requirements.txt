@@ -1,0 +1,4 @@
+actdiag==0.5.4
+nwdiag==1.0.4
+blockdiag[pdf]==1.5.3
+seqdiag==0.9.3
