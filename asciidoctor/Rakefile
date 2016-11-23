@@ -1,0 +1,24 @@
+BASEDIR = File.dirname(__FILE__)
+
+namespace 'asciidoctor' do
+  desc 'Build latest'
+  task latest: [] do
+    Dir.chdir(BASEDIR) do
+      sh 'docker build -t jhulten/asciidoctor . &&' \
+         'docker push jhulten/asciidoctor'
+    end
+  end
+
+  desc 'Build onbuild image'
+  task onbuild: [:latest] do
+    Dir.chdir(File.join(BASEDIR, 'onbuild')) do
+      sh 'docker build -t jhulten/asciidoctor:onbuild . &&' \
+         'docker push jhulten/asciidoctor:onbuild'
+    end
+  end
+
+  desc 'Build all'
+  task all: [:onbuild]
+end
+
+task default: ['asciidoctor:all']
