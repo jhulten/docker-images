@@ -3,7 +3,7 @@ FROM ruby:2.3-alpine
 # Add content from https://github.com/docker-library/openjdk/8-jre/alpine/Dockerfile
 
 # Default to UTF-8 file.encoding
-ENV LANG C.UTF-8
+ENV LANG="en_US.UTF-8" LANGUAGE="en_US.UTF-8" LC_ALL="en_US.UTF-8"
 
 # add a simple script that can auto-detect the appropriate JAVA_HOME value
 # based on whether the JDK or only the JRE is installed
@@ -14,7 +14,7 @@ RUN { \
 		echo 'dirname "$(dirname "$(readlink -f "$(which javac || which java)")")"'; \
 	} > /usr/local/bin/docker-java-home \
 	&& chmod +x /usr/local/bin/docker-java-home
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/jre
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
 
 ENV JAVA_VERSION 8u111
@@ -139,6 +139,7 @@ RUN set -ex \
 	&& rm -rf /tmp/ditaa0_9.zip \
 	&& apk del .fetch-deps
 
+RUN mkdir /documents
 WORKDIR /documents
 
 CMD ["/bin/bash"]
