@@ -140,6 +140,5 @@ RUN set -ex \
 	&& apk del .fetch-deps
 
 WORKDIR /documents
-VOLUME /documents
 
 CMD ["/bin/bash"]
