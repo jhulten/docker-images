@@ -37,10 +37,11 @@ ENV PYTHON_PIP_VERSION 9.0.1
 
 RUN set -ex \
   && apk add --no-cache \
-    libjpeg-turbo-dev \
-    graphviz \
+		fontconfig \
+		graphviz \
 		gcc \
 		libc-dev \
+		libjpeg-turbo-dev \
 		make
 
 RUN set -ex \
